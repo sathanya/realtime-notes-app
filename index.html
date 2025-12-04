@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Real-time Notes (Flask + SocketIO)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    html,body { height:100%; margin:0; font-family: Arial, sans-serif; background:#f7f7f8; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; padding:10px 16px; background:#ffffff; border-bottom:1px solid #e0e0e0; }
+    .title { font-weight:700; }
+    .status { font-size:0.9rem; color:#666; }
+    #note { width:100%; height:calc(100% - 54px); box-sizing:border-box; padding:18px; border:none; resize:none; font-size:16px; line-height:1.4; background:white; outline:none; }
+    .container { height:100vh; display:flex; flex-direction:column; }
+    .small { font-size:0.85rem; color:#888; }
+    button { padding:6px 10px; border-radius:4px; border:1px solid #ddd; background:#fff; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="title">Real-time Collaborative Notes — Flask MVP</div>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <div class="status" id="status">Connecting…</div>
+        <button id="saveBtn">Save Now</button>
+      </div>
+    </div>
+
+    <textarea id="note" placeholder="Start typing..."></textarea>
+  </div>
+
+  <!-- Socket.IO client is served by flask-socketio at /socket.io/socket.io.js -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="{{ url_for('static', filename='client.js') }}"></script>
+</body>
+</html>
